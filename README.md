@@ -7,6 +7,7 @@ During the login flow, intercept a request to the OAuth server's /auth endpoint.
 
 Example: 
 GET /.well-known/openid-configuration HTTP/1.1
+
 Host: oauth-<your-oauth-server>.oauth-server.net
 
 
